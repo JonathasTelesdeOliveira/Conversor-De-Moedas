@@ -1,50 +1,34 @@
 import java.util.Scanner;
 
-
 public class Main {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        ConsultarMoeda consultarMoeda = new ConsultarMoeda();
+        System.out.println("Bem vindo ao conversor de MOEDAS!!!!!!!!!!!\n");
+        System.out.println("Convert USD para BRL");
 
-        while (true) {
-            System.out.println("Digite o código da MOEDA: (ou 'sair' para encerrar): ");
-            String base_code = entrada.nextLine().trim();
+        entrada.nextLine();
+        System.out.println("\nMoeda De Origem: ");
+        System.out.println("De: ");
+        String base_code = entrada.nextLine().trim();
 
-            if (base_code.equalsIgnoreCase("sair")){
-                System.out.println("Encerramento pipeline de execução.");
-                break;
-            }
+        if (base_code.equalsIgnoreCase("sair")) {
+            System.out.println("Encerramento pipeline de execução.");
+            return;
+        }
+        // Validação
+        if (!base_code.matches("^[A-Za-z]{3}$")) {
+            System.out.println("Código de moeda inválido. Use o padrão ISO-4217 (ex: USD, BRL, EUR)."+ base_code);
+        }
+        try {
+            /*      *************************************************           */
 
-            // Validação de campo crítico
-            if (!base_code.matches("^[A-Za-z]{3}$")) {
-                System.out.println("Código de moeda inválido. Use o padrão ISO-4217 (ex: USD, BRL, EUR).");
-                continue;
-            }
+            ConsultarMoedaManualmente consultarMoedas = new ConsultarMoedaManualmente();
+            Moeda moeda = consultarMoedas.ConsultarMoeda(base_code);
 
-            System.out.println("""
-                    Escolha a operação:
-                    1 - Consultar Moeda");
-                    2 - Conversão (indisponível)
-                    """);
-                int num;
-                try {
-                    num = Integer.parseInt(entrada.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Entrada inválida!!!");
-                    continue;
-                }
-                switch (num) {
-                    case 1:
-                        Moeda moeda =
-                                consultarMoeda.ConsultarMoeda(base_code);
-                        System.out.println(moeda);
-                    break;
-                    case 2:
-                        System.out.println("Opão fora do ar");
-                    break;
-                    default:
-                        throw new IllegalStateException("Invalid day: " + base_code);
-                }
+            GeradorArquivo geradorArquivo = new GeradorArquivo();
+            geradorArquivo.salvaJson(moeda);
+        } catch (Exception e) {
+            System.out.println("Errror::::" + e.getMessage());
         }
     }
 }
