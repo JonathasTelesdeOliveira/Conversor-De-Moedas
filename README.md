@@ -28,18 +28,23 @@ O objetivo é permitir que o usuário converta valores entre diferentes moedas d
 - **ExchangeRate API** (fonte das taxas de câmbio)
 - **IntelliJ IDEA** (IDE utilizada no desenvolvimento)
 
----
+📂 Estrutura do Projeto
+src/ 
 
-## 📂 Estrutura do Projeto
+├── Main.java                       # Classe principal com interação via console
 
-src/
-├── Main.java # Classe principal com interação via console
-├── ConsultarMoedaManualmente.java # Consulta manual (endpoint /latest)
+├── ConsultarMoedaManualmente.java  # Consulta manual (endpoint /latest)
+
 ├── ConsultarMoedaAutomaticamente.java # Consulta automática (endpoint /pair)
-├── Moeda.java # Record para mapear resposta JSON
-├── MoedaPair.java # Record específico para conversão automática
-├── GeradorArquivo.java # Classe para salvar dados em JSON
-└── Config.java # Classe utilitária para armazenar a APIKEY
+
+├── Moeda.java                      # Record para mapear resposta JSON
+
+├── MoedaPair.java                  # Record específico para conversão automática
+
+├── GeradorArquivo.java             # Classe para salvar dados em JSON
+
+└── Config.java                     # Classe utilitária para armazenar a APIKEY
+
 
 ---
 
@@ -85,11 +90,9 @@ Criar testes automatizados para validar as conversões.
 Melhorar a interface textual (exibir resultados formatados).
 
 👨‍💻 Autor
-Projeto desenvolvido por Jhonatan durante estudos de Java e integração com APIs.
+Projeto desenvolvido por Jônathas Teles de Oliviera durante estudos de Java e integração com APIs cruso ministrado pela Alura no probama next.One & Oracle.
 
 
 ---
 
-👉 Esse README já está pronto para colocar no GitHub.  
-Quer que eu monte também um **badge de status** (Java version, API usada, etc.) para deixar mais profissional?
-
+👉 ![img.png](img.png)
