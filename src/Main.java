@@ -40,12 +40,22 @@ public class Main {
             //converter
             Map<String, Double> taxas = moeda.listaMap();
             double resultado = consultarMoedas.Converter(valor, base_code, target_code, taxas);
+
+            // CONVERSÃO AUTOMÁTICA
+            ConsultarMoedaAutomaticamente consultarMoedaAutomaticamente = new ConsultarMoedaAutomaticamente();
+            MoedaPair moedaPair = consultarMoedaAutomaticamente.ConsultarMoedaAutomaticamente(base_code, target_code);
+            if (moedaPair == null) {
+                System.out.println("Falha ao consultar API. Pipeline encerrado.");
+                return;
+            }
+
             System.out.println("\n_______________________________________________________________________________________\n");
-            System.out.println("Conversão realizada:");
             System.out.printf("Moeda Base: %s %.2f", base_code, valor);
             System.out.printf("\nMoeda Destino: %s%n", target_code);
+            System.out.println("Taxa de conversão: " + moedaPair.conversion_rate());
             System.out.printf("Conversão realizada: %n%.2f %s = %.2f %s%n",
                     valor, base_code, resultado, target_code);
+            System.out.println("\n_______________________________________________________________________________________\n");
 
         } catch (Exception e) {
             System.out.println("Errror::::" + e.getMessage());
