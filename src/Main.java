@@ -21,12 +21,12 @@ public class Main {
         String target_code = entrada.nextLine().trim();
 
         if (base_code.equalsIgnoreCase("sair") | target_code.equalsIgnoreCase("sair")) {
-            System.out.println("Encerramento pipeline de execução."+ base_code +" , "+ target_code);
+            System.out.println("Encerramento pipeline de execução." + base_code + " , " + target_code);
             return;
         }
         // Validação
         if (!base_code.matches("^[A-Za-z]{3}$") | !target_code.matches("^[A-Za-z]{3}$")) {
-            System.out.println("Código de moeda inválido. Use o padrão ISO-4217 (ex: USD, BRL, EUR)."+ base_code +" , "+ target_code);
+            System.out.println("Código de moeda inválido. Use o padrão ISO-4217 (ex: USD, BRL, EUR)." + base_code + " , " + target_code);
         }
         try {
             /*      *************************************************           */
@@ -48,15 +48,13 @@ public class Main {
                 System.out.println("Falha ao consultar API. Pipeline encerrado.");
                 return;
             }
-
             System.out.println("\n_______________________________________________________________________________________\n");
             System.out.printf("Moeda Base: %s %.2f", base_code, valor);
             System.out.printf("\nMoeda Destino: %s%n", target_code);
-            System.out.println("Taxa de conversão: " + moedaPair.conversion_rate());
-            System.out.printf("Conversão realizada: %n%.2f %s = %.2f %s%n",
+            System.out.printf("Taxa de conversão: %.4f%n", moedaPair.conversion_rate());
+            System.out.printf("Conversão realizada: %.2f %s = %.2f %s%n",
                     valor, base_code, resultado, target_code);
             System.out.println("\n_______________________________________________________________________________________\n");
-
         } catch (Exception e) {
             System.out.println("Errror::::" + e.getMessage());
         }
