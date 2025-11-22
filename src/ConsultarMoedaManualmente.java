@@ -41,7 +41,7 @@ public class ConsultarMoedaManualmente {
                     }
                 }
                 // imprime só as 6 moedas pedidas
-                System.out.println("==== 6 Moedas Selecionadas ====");
+                System.out.println("==== Cotação ====");
                 listaMap.forEach((sigla, taxa) -> System.out.println(sigla + " → " + taxa));
 
 
@@ -61,5 +61,16 @@ public class ConsultarMoedaManualmente {
         }
         return null;
     }
+    public double Converter(Double valor, String base_code, String target_code, Map<String, Double> taxas) {
+        if (!taxas.containsKey(base_code) || !taxas.containsKey(target_code)) {
+            throw new IllegalArgumentException("Moeda não encontrada nas taxas de câmbio!");
+        }
+        // Normaliza para USD
+        double valorUSD = valor / taxas.get(base_code);
+
+        // converte para a moeda destivo
+        return valorUSD * taxas.get(target_code);
+    }
+
 }
 
