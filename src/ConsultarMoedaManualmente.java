@@ -44,12 +44,8 @@ public class ConsultarMoedaManualmente {
                 System.out.println("==== Cotação ====");
                 listaMap.forEach((sigla, taxa) -> System.out.println(sigla + " → " + taxa));
 
-
                 // retorna o record preenchido 6 MOEDAS
                 return new Moeda(result, base, null, null, listaMap);
-
-                // retorna o record preenchido inteiro
-                //return new Gson().fromJson(root, Moeda.class);
 
             } catch (Exception e) {
                 System.out.println("Erro no client HTTP"+ e.getMessage());
